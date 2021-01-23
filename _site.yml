@@ -5,11 +5,11 @@ description: |
 output_dir: "docs"
 navbar:
   right:
-    - text: "Home"
+    - text: "Home"      # tobi.html replacement (by renaming tobi.Rmd)
       href: index.html
     - text: "About"
       href: about.html
-    - text: "Blog"      # add
-      href: blog.html   # add
+    - text: "Blog"      # added as a new page
+      href: blog.html
 output: distill::distill_article
 theme: postcards.css
