@@ -1,0 +1,68 @@
+---
+title: CV
+name: Zoe
+surname: Duerksen-Salm
+position: "Graduate Student"
+address: "San Francsico, CA, USA"
+phone: +1 619 846 0154
+email: "zduerksen-salm@ucsb.edu"
+github: zoedsalm
+linkedin: zoe-duerksen-salm
+date: "`r format(Sys.time(), '%B %Y')`"
+aboutme: "Marie is a Polish and naturalized-French physicist and chemist who conducts pioneering research on radioactivity."
+output: 
+  vitae::markdowncv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(tidyverse)
+```
+
+### Education
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Bren School of Environmental Science & Management, UC Santa Barbara", "2019-2021", "Santa Barbara, CA", "Masters of Environental Science & Management",
+  "UC Davis", "2013-2017", "Davis, CA", "Bachelor of Science, Anthropology"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+### Communication Experience
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "SanDiego350", "05/20 - 09/20", "San Diego, CA", "Communications & Social Media Intern,",
+  "Bren School", "09/19 - 06/20", "Santa Barbara, CA", "Communications Program Assistant,",
+  "SaveNature.Org", "10/18 - 09/19", "San Francisco, CA", "Conservation Program Coordinator ,",
+  "Oakland Zoo", "07/18 - 12/18", "Oakland, CA", "Conservation Intern,"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+### Additional Experience
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Bren School, Comms Department", "09/20 - 12/20", "Santa Barbara, CA", "Teaching Assistant,",
+  "UCSB, Anthropology Department", "01/20 - 03/20", "Santa Barbara, CA", "Teaching Assistant,",
+  "Oakland Zoo", "01/18 - 06/18", "Oakland, CA", "Animal Care Intern,",
+  "CA National Primate Research Center", "03/15 - 02/18", "Davis, CA", "Research Assistant,"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+
+### Skills
+
+ * **Comms:** Quickbooks, Adobe Processing, Adobe Premiere, Canva, Microsoft Office Suite
+ * **Technical:** ArcMap, IBM SPSS Statistics, RStudio, ASL Results Plus, Image-J, Circuitscape
+ * **Language:** Fluent in English and Spanish

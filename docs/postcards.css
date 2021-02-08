@@ -64,11 +64,11 @@ d-appendix {
 /* These properties only apply to Distill sites and blogs  */
 
 .distill-site-header {
-  --title-size:       18px;    
-  --text-color:       #ff414b; /* edited */
-  --text-size:        15px;
-  --hover-color:      #dd424c; /* edited */
-  --bkgd-color:       #ffd8db; /* edited */
+  --title-size:       25px;    
+  --text-color:       #16696E; /* edited */
+  --text-size:        20px;
+  --hover-color:      #ffffff; /* edited */
+  --bkgd-color:       #ACD5D8; /* edited */
 }
 
 .distill-site-footer {

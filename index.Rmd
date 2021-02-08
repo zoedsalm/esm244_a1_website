@@ -1,6 +1,6 @@
 ---
 title: "Zoe Duerksen-Salm"
-image: "zds.jpg"
+image: "zds2.jpg"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/zoe-duerksen-salm-805452156"
@@ -12,5 +12,5 @@ output:
   postcards::trestles
 site: distill::distill_website
 ---
- 
-I am a current UCSB Bren School of Environmental Science & Management Master's candidate based in the San Francisco Bay Area. The combination of my background in research and wildlife preservation has shaped my passion for small- and large-scale environment conservation and communication. 
+
+I am long-term Californian hell-bent on preserving local ecosystems and communities through the use of approachable environmental communication. Based out of the San Francisco Bay Area, I am a current Master's candidate at the UCSB Bren School of Environmental Science & Management Master's candidate based in the San Francisco Bay Area. Currently in pursuit of employment within the environmental sector.
