@@ -1,0 +1,108 @@
+---
+title: "Relevant Work Experience"
+name: Relevant Work Experience
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Education
+
++---------------------------------------------------------------------+---------------------+
+| Master of Environmental Science & Management                        | Expected 2021       |
++=====================================================================+====================:+
+| Bren School of Environmental Science & Management, UC Santa Barbara | *Santa Barbara, CA* |
++---------------------------------------------------------------------+---------------------+
+
+-   Focus: Conservation Planning and Strategic Communications & Media
+-   Independent study: Outdoors UNLocked - a project on diversity and equity in the outdoors
+
+| B.A. Sustainable Architecture & Urban Studies |               2008 |
+|-----------------------------------------------|-------------------:|
+| Brown University                              | *Rhode Island, CA* |
+
+## Master's Thesis
+
++-----------------------------------------------------------------+-----------------------------------------+
+| Marine Spatial Prioritization for Sharks and Rays in Mozambique | 4/20-Present                            |
++=================================================================+========================================:+
+| Data Manager                                                    | *Client:* Wildlife Conservation Society |
++-----------------------------------------------------------------+-----------------------------------------+
+
+-   Build a reproducible spatial prioritization model in R to identify key areas
+-   Co-managed the collection, cleaning, and preparing of all data for our model. Included 30 species, 7 critical habitats, known MPAs and aggregations sites, and creating 5 unique cost layers. Other tasks included installing software and running 30+ unique model runs.
+
+## Conservation Planning Experience
+
+| GIS Conservation Intern             | 6/20-9/20 |
+|-------------------------------------|----------:|
+| Wildlife Conservation Society (WCS) |  *Remote* |
+
+-   Collected, cleaned + prepared 100+ data files (habitat, species, threats) for Key Biodiversity Area identification in Mozambique
+-   Created an ArcGIS Online integrated Story Map and Atlas for Key Biodiversity Areas in Mozambique
+
+
+| Field Work Volunteer  |           9/20 |
+|------------------------|---------------:|
+| National Parks Service | *Pinedale, WY* |
+
+-   White bark pine transects, Gros Ventre Range, WY: surveys, data collection, forest habitat typing using Dichotomous Key
+
+## Communications Experience
+
+| Sr. Account Manager + Brand Strategist |           2/16-5/19 |
+|----------------------------|--------------------:|
+| Vermilion Design + Digital         | *Boulder, C0* |
+
+-   Managed $2M cumulative budgets for multi-channel marketing of top performing portfolio brands including: Farley Health Policy Center, City of Boulder, Brewer’s Association, Nestle, Gill Foundation, Somm Foundation and 34 Degrees Crackers 
+-   Managed quantitative and qualitative research including discovery phase, audience segmentation, insight gathering and brand positioning workshops (branding, naming, messaging, positioning)
+-   Developed strategy, creative direction, and integrated multi-channel campaigns spanning digital, social, earned media, websites, print, OOH, photography and video
+-   Executed product launches and activations, including PR, trade and consumer marketing, and online campaigns
+-   Internal team lead: delegated projects, acted as creative director, ran point on keeping the team organized, on budget and on deadline while ensuring final approval on all work before providing deliverables to clients
+-   Wrote and presented proposals, creative briefs, analytics, press releases, and media kits
+
+## Sustainability Experience
+
+| Strategy + Business Consultant |           9/15-1/16 |
+|----------------------------|--------------------:|
+| Dock to Dish         | *Los Angeles, CA* |
+
+-   Developed financial model (COGS, P+L, inventory) + a 12-month digital marketing editorial calendar for LA market launch 
+ 
+
+| Sr. Sales, Marketing + Community Manager |           9/10-8/15 |
+|----------------------------|--------------------:|
+| Farmhand Organics         | *Denver, CO* |
+
+-   Led sales and marketing across all channels: direct, online, and in-store with sales of $1M in 300 retail locations 
+-   Led strategic planning and data analysis of sales and marketing, reporting to the BOD and C-suite 
+-   Wrote and developed strategy for all digital products and marketing: website, blog, newsletters and social media 
+-   Led sales operations + team, including all trainings, inventory management, and Brand Ambassador Program (30+ employees)
+-   Executed business development with 150 retail partners, 3,000 direct to consumer customers, 25 farmers, food industry and online partnerships and ran 4 volunteer events per year with 20+ attendees/per event
+
+| Assistant Director of Education |           4/10-8/10 |
+|----------------------------|--------------------:|
+| Cure Organic Farm         | *Boulder, CO* |
+
+-   Educated 12 groups of 15 children on the 100 different varieties of organic certified crops on the 12-acre farm including: bio-dynamic farming, regenerative soil best practices, organic vs. conventional farming, and more 
+ 
+
+
+## Volunteer Experience
+
+|Board Member                       |          7/20-Present |
+|------------------------------|--------------------:|
+| Sublette Trails Association    | *Pinedale, WY* |
+
+|Board Member                     |           10/20-Present |
+|----------------------------------|----------------------:|
+| American Planning Association - APA | *Santa Barbara, CA* |
+
+|Adaptive Ski Instructor          |        11/15-4/16 |
+|-------------------------------|-----------------:|
+| Ignite Adaptive Sports | *Boulder, CO* |
+
+|English Teacher                |        8/06-12/06 |
+|-----------------------|-----------------:|
+| Cross Cultural Solutions | *Bangkok, Thailand* |

@@ -9,10 +9,10 @@ navbar:
       href: index.html
     - text: "About Me"
       href: about.html
-    - text: "Blog"      # added as a new page
+    - text: "Projects"
       href: blog.html
-    - text: "Resume"      # added as a new page
+    - text: "Resume"
       href: Resume/Resume.html
-      
+
 output: distill::distill_article
 theme: postcards.css
