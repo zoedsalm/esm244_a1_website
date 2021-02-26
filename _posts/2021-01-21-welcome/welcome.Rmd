@@ -1,7 +1,7 @@
 ---
-title: "welcome"
+title: "Interplay of Community Forestry & Gorrilla Conservation in the DRC"
 description: |
-  A short description of the post.
+  Bren School of Environmental Science & Management masters capstone project. Here a combination of connectivity and socioeconomic models are established to identify priority restoration areas within the corridor and to understand the potential repercussions to community welfare.
 author:
   - name: Zoe Duerksen-Salm
 date: 01-21-2021
@@ -10,13 +10,12 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+# Findings & Discussion TBD
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
-
-
+```{r, out.width = "500px",fig.align = 'center'}
+knitr::include_graphics("gorilla.jpg")
+```
