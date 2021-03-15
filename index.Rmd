@@ -14,3 +14,5 @@ site: distill::distill_website
 ---
 
 I am long-term Californian hell-bent on preserving local ecosystems and communities through the use of approachable environmental communication. Based out of the San Francisco Bay Area, I am a current Master's candidate at the UCSB Bren School of Environmental Science & Management Master's candidate based in the San Francisco Bay Area. Currently in pursuit of employment within the environmental sector.
+
+Reach out through any of the liks to the left if you'd like to chat!

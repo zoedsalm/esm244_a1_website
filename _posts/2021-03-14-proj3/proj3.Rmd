@@ -1,0 +1,113 @@
+---
+title: "Cetacean Species Richness Along the CA Coast"
+description: |
+  Visualization of probable presence of cetacean species along a segment of the California coast (between San Francisco, CA and Tijuana, Mexico). As seen on the map, cetacean species richness seems to be highest in Southern California.
+author:
+  - name: Zoe Duerksen-Salm
+    url: {}
+date: 03-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(sf)
+library(tmap)
+library(gstat)
+library(stars)
+library(raster)
+library(rnaturalearth)
+```
+
+## Unzip & Assess Data
+
+Initial wrangling of data suggests that cetacean species presence (richness) along the coast of California is greatest along the coastline. This is displayed on the plot below because there are higher numbers of green squares (indicative of higher presence probability) along the plot diagonal.
+
+```{r}
+# Read in all .tif files
+cetacean_files <- list.files(path = here("data","ca_cetaceans"),
+                             pattern = ".tif",
+                             full.names = TRUE)
+
+# Use raster_stack() raster combine all layers
+cetacean_stack <- raster::stack(cetacean_files)
+
+
+# Change from raster stack to df
+cetacean_df <- rasterToPoints(cetacean_stack) %>% 
+  as.data.frame()
+```
+
+---
+
+## Probability Threshold Map
+
+A probability threshold of 0.6 was selected to narrow the data scope. Creation of this threshold allowed for the data points to be segmented into two categories: above the threshold or below. As expected, map below shows a reduction in spread with an implemented threshold. It's also made clear that the cetacean species of *Inodopacetus pacificus* and *Kogia sima* do not have any probability of of richness over 0.6 (and thus will be excluded from the final visualization).
+
+```{r}
+# Create probability threshold fxn of 0.6 or higher > binary output (>0.6 (1) or <0.6 (0))
+cetacean_presence <- function(x, thresh = 0.6, na.rm){
+  y <- ifelse(x >= thresh, 1, 0)
+  return(y)
+}
+
+# Rerun cetacean df with fxn
+cetacean_threshold <- calc(x = cetacean_stack, fun = cetacean_presence, na.rm = TRUE)
+
+# Remake df to include threshold values
+cetacean_threshold_df <- rasterToPoints(cetacean_threshold) %>% 
+  as.data.frame()
+
+# Use pivot_longer() to find presence of indiv spps at each (x,y) coordinate point
+cetacean_tidy <- cetacean_threshold_df %>% 
+  clean_names() %>% 
+  pivot_longer(cols = "balaenoptera_acutorostrata":"ziphius_cavirostris", #aggregate spp cols
+               names_to = "cetacean_spp", #name new col
+               values_to = "cetacean_presence")#new value col
+  
+# Use summarize() to find total presence at each (x,y) coordinate point 
+cetacean_summary <- cetacean_tidy %>% 
+  group_by(x, y) %>% 
+  summarize(tot_presence = sum(cetacean_presence, na.rm = TRUE))
+```
+
+---
+
+## Species Richness Map
+
+```{r, warning = FALSE}
+# Read in coastline shape
+ca_coast <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Final plot
+ggplot()+
+  geom_raster(data = cetacean_summary, aes(x = x, y = y, fill = tot_presence)) +
+  geom_sf(data = ca_coast, fill = "gray97") +
+  scale_fill_gradient(low = 'lightskyblue', high = 'dodgerblue4') +
+  theme_minimal() +
+  coord_sf(expand = 0, xlim = c(-125, -115), ylim =c(32,38)) + #limit ggplot to raster extent
+  annotate("point", x = -122.45, y = 37.75, size = 1, color = "red") +
+  annotate("text", x = -121, y = 37.75, label = "San Francisco, CA", color="red", size=2.5, fontface="bold") +
+  annotate("point", x = -116.75, y = 32.4, size = 1, color = "red") +
+  annotate("text", x = -115.9, y = 32.4, label = "Tijuana, MX", color="red", size=2.5, fontface="bold") +
+  labs(title = "California Coast Cetacean Species Richness",
+       subtitle = "San Francisco Bay Area to Tijuana, Mexico",
+       x = "Longitude",
+       y = "Latitude",
+       fill = "Species\nRichness")
+```
+
+The figure above visualizes probable presence of cetacean species along a segment of the California coast. The cities of San Francisco, CA, USA and Tijuana, Mexico are both included on the map for spatial reference. Ocean presence is shown in blue colors, with darker colors represent higher species richness. Values for richness were calculated using a probability of presence threshold of 0.6 (or 60%) to heighten the plausibility of presence counts. As seen on the map, at this threshold,  cetacean species richness seems to be highest in Southern California.
+
+---
+
+## Data Source
+
+Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). **[AquaMaps: Predicted range maps for aquatic species.](https://www.aquamaps.org/)**

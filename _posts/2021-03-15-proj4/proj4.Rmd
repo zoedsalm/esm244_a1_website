@@ -1,0 +1,130 @@
+---
+title: "Palmetto Binary Logistic Regression"
+description: |
+  Binary logistic regression used on the Abrahamson 2019 Florida palmetto data. BLR was used to test the feasibility of using variables plant height (height), canopy length (length), canopy width (width), and number of green leaves (green_lvs) to classify whether a palmetto is species Serenoa repens or Sabal etonia. 
+author:
+  - name: Zoe Duerksen-Salm
+    url: {}
+date: 03-15-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+# Attach packages
+library(tidyverse)
+library(janitor)
+library(here)
+library(readxl)
+library(dplyr)
+library(lubridate)
+library(patchwork)
+library(broom)
+library(jtools)
+library(GGally)
+library(ggraph)
+library(kableExtra)
+
+# Read in data
+palmetto <- read_csv("palmetto.csv") %>% 
+  clean_names()
+
+# Create new df containing columns of interest
+# (species, height, width, length, and green leaves)
+palmetto_explore <- palmetto %>% 
+  select(species, height:green_lvs)
+
+# Assign species to correlated numbers in species column
+palmetto_explore$species <- gsub("1", "Serenoa repens", palmetto_explore$species)
+palmetto_explore$species <- gsub("2", "Sabal etonia", palmetto_explore$species)
+
+# Change species names to factor
+palmetto_explore$species <- as.factor(palmetto_explore$species) 
+```
+
+## Exploratory Visualizations
+Finalized data visualizations that explore differences in height, canopy length, canopy width, and green leaves for the two plant species.
+
+### **CORRELATION MATRIX**
+```{r}
+# Create data frame with only columns of interest, but keeping "species" as numeric values (1 or 2)
+palmetto_ggcorr <- palmetto %>% 
+  select(species, height:green_lvs)
+
+ggcorr(palmetto_ggcorr, nbreaks = 5)+
+  labs(title = "Fig 1. Correlation Variable Matrix",
+       subtitle = "Serenoa repens & Sabal etonia plant species")
+```
+**Figure 1.** Squares on the matrix visualize the correlation between variable pairs. Darker square color is indicative of a stronger correlation. The red squares show positive correlations, blue squares show negative correlations, and grey squares display correlations of essentially zero.
+
+**Correlation Matrix Takeaways:** Length, width, and height all show a strong positive correlation with one another. Species and green leaves are only strongly correlated with one another. The correlation matrix plot indicates that green leaves will be the strongest predictor of species type.
+
+**JITTER PLOT**
+```{r}
+# Create jitter plot A - species vs. height
+A <- ggplot(data = palmetto_explore, aes(x = species, y = height)) +
+  geom_jitter(aes(color = species), show.legend = FALSE) +
+  labs(x = "", y = "Height (cm)")
+
+# Create jitter plot B - species vs. length
+B <- ggplot(data = palmetto_explore, aes(x = species, y = length)) +
+  geom_jitter(aes(color = species),show.legend = FALSE) +
+  labs(x = "", y = "Length (cm)")
+
+# Create jitter plot C - species vs. width
+C <- ggplot(data = palmetto_explore, aes(x = species, y = width)) +
+  geom_jitter(aes(color = species),show.legend = FALSE) +
+  labs(x = "", y = "Width (cm)")
+
+# Create jitter plot D - species vs. green leaves
+D <- ggplot(data = palmetto_explore, aes(x = species, y = green_lvs)) +
+  geom_jitter(aes(color = species)) +
+  labs(x = "", y = "Green Leaves Count (n)")
+
+# Combine all plots
+(A | B) / (C | D) +
+  plot_annotation(
+    title = "Fig 2. Plant Morphology Differences Between Secies",
+    subtitle = "Serenoa repens & Sabal etonia") &
+  theme_minimal() &
+  theme(legend.position="bottom")
+```
+
+**Figure 2.** The jitter plots above display morphology observations for the Serenoa repens (teal) & Sabal etonia (coral) plant species. Displayed morphologies are plant height (top left), plant length (top right), plant width (bottom left), and the # of green leaves (bottom right). Species type is on the x-axis and morphology values are on the y-axis.
+
+**Jitter Plot Takeaways:** The jitter plot confirms the results identified in the correlation matrix: Length and width appear relatively similar regardless of species, height is a weak predictor of species type, and green leaves are the strongest predictor.
+
+---
+
+## Binary Logistic Regression
+
+Binary logistic regression using plant height, canopy length, canopy width and green leaves as predictor variables to understand how they relate to the probability of a plant being Serenoa repens or Sabal etonia
+
+```{r}
+# Run blr with desired varialbes
+palmetto_blr <- glm(species ~ height + length + width + green_lvs,   
+                            data = palmetto_explore, 
+                            family = "binomial")
+
+# Tidy up the data and create a table visualizing blr outputs
+palmetto_blr_tidy <- tidy(palmetto_blr)
+
+palmetto_blr_tidy %>% 
+  kable(align = "c") %>% 
+  kable_styling(bootstrap_options = c("striped", "responsive"),
+                font_size = 15) %>% 
+  row_spec(0, bold = T, color = "black", background = "tan") %>% 
+  column_spec(1, bold = T, color = "black", background = "tan")
+```
+
+**BLR Takeaways:** Outputs of binary logistic regression model used to evaluate the effectiveness of variables variables plant height (height), canopy length (length), canopy width (width), and number of green leaves (green_lvs) as predictors of plant species type). The estimate column indicates the change in predicted likelihood that a species is Serenoa repens given variable measurements."
+
+---
+
+## Data source
+
+Abrahamson, W.G. 2019. Survival, growth and biomass estimates of two dominant palmetto species of south-central Florida from 1981 - 2017, ongoing at 5-year intervals ver 1. Environmental Data Initiative. https://doi.org/10.6073/pasta/f2f96ec76fbbd4b9db431c79a770c4d5

@@ -11,6 +11,8 @@ navbar:
       href: about.html
     - text: "Projects"
       href: blog.html
+    - text: "Graphics"
+      href: climate.html
     - text: "Resume"
       href: Resume/Resume.html
 
